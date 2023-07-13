@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+require("express-async-errors");
 const app = express();
 const mongoose = require("mongoose");
 const blogsRouter = require("./controllers/blogs");
@@ -8,6 +9,7 @@ const logger = require("./utils/logger");
 const config = require("./utils/config");
 
 mongoose.set("strictQuery", false);
+mongoose.set("bufferTimeoutMS", 30000);
 
 logger.info("connecting to", config.MONGODB_URI);
 
