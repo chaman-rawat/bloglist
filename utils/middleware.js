@@ -9,7 +9,6 @@ const requestLogger = (request, response, next) => {
 };
 
 const tokenExtractor = (request, response, next) => {
-  // code that extracts the token
   const authorization = request.get("authorization");
   if (authorization && authorization.startsWith("bearer ")) {
     request.token = authorization.replace("bearer ", "");
