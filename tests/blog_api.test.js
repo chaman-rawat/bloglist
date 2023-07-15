@@ -3,7 +3,6 @@ const supertest = require("supertest");
 const app = require("../app");
 const Blog = require("../models/blog");
 const helper = require("./test_helper");
-// const blog = require("../models/blog");
 
 const api = supertest(app);
 
@@ -15,7 +14,7 @@ beforeEach(async () => {
 
   blogObject = new Blog(helper.initialBlogs[1]);
   await blogObject.save();
-});
+}, 100000);
 
 test("blogs are returned as json", async () => {
   await api
