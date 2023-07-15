@@ -45,10 +45,10 @@ blogsRouter.delete("/:id", async (request, response) => {
     return response.status(401).json({ error: "token invalid" });
   }
 
-  const user = await User.findById(decodedToken.id);
+  const user = request.user;
   const blog = await Blog.findById(request.params.id);
   if (blog.user.toString() !== user.id.toString()) {
-    return response.status(401).json({ error: "invalid user" });
+    return response.status(401).json({ error: "unauthorized user" });
   }
 
   await Blog.findByIdAndRemove(request.params.id);
@@ -64,10 +64,10 @@ blogsRouter.put("/:id", async (request, response) => {
     return response.status(401).json({ error: "token invalid" });
   }
 
-  const user = await User.findById(decodedToken.id);
+  const user = request.user;
   const blog = await Blog.findById(request.params.id);
   if (blog.user.toString() !== user.id.toString()) {
-    return response.status(401).json({ error: "invalid user" });
+    return response.status(401).json({ error: "unauthorized user" });
   }
 
   const updatedBlog = await Blog.findByIdAndUpdate(
