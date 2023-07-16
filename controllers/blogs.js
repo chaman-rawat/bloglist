@@ -48,7 +48,7 @@ blogsRouter.delete("/:id", async (request, response) => {
   const user = request.user;
   const blog = await Blog.findById(request.params.id);
   if (blog.user.toString() !== user.id.toString()) {
-    return response.status(401).json({ error: "unauthorized user" });
+    return response.status(403).json({ error: "forbidden" });
   }
 
   await Blog.findByIdAndRemove(request.params.id);
@@ -67,7 +67,7 @@ blogsRouter.put("/:id", async (request, response) => {
   const user = request.user;
   const blog = await Blog.findById(request.params.id);
   if (blog.user.toString() !== user.id.toString()) {
-    return response.status(401).json({ error: "unauthorized user" });
+    return response.status(403).json({ error: "forbidden" });
   }
 
   const updatedBlog = await Blog.findByIdAndUpdate(
