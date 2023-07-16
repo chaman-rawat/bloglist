@@ -1,6 +1,23 @@
 const Blog = require("../models/blog");
 const User = require("../models/user");
 
+const initialUsers = [
+  {
+    username: "a",
+    name: "a",
+    password: "p",
+    // passwordHash:
+    //   "$2a$10$leCnxIFMbxNCOuEPFY0iX./lYbicAHMvLX/c.NxgtExElEPAjD6em",
+  },
+  {
+    username: "b",
+    name: "b",
+    password: "b",
+    // passwordHash:
+    //   "$2a$10$leCnxIFMbxNCOuEPFY0iX./lYbicAHMvLX/c.NxgtExElEPAjD6em",
+  },
+];
+
 const initialBlogs = [
   {
     title: "React patterns",
@@ -27,6 +44,7 @@ const usersInDb = async () => {
 };
 
 module.exports = {
+  initialUsers,
   initialBlogs,
   blogsInDb,
   usersInDb,
