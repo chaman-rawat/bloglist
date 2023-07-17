@@ -30,7 +30,7 @@ beforeEach(async () => {
     await api
       .post("/api/blogs")
       .send(blog)
-      .set({ authorization: `bearer ${token}` });
+      .set({ authorization: `Bearer ${token}` });
   }
 }, 100000);
 
@@ -69,7 +69,7 @@ describe("addition of a blog", () => {
     await api
       .post("/api/blogs")
       .send(newBlog)
-      .set({ authorization: `bearer ${token}` })
+      .set({ authorization: `Bearer ${token}` })
       .expect(201)
       .expect("Content-Type", /application\/json/);
 
@@ -87,7 +87,7 @@ describe("addition of a blog", () => {
     const addedBlog = await api
       .post("/api/blogs")
       .send(newBlog)
-      .set({ authorization: `bearer ${token}` })
+      .set({ authorization: `Bearer ${token}` })
       .expect(201)
       .expect("Content-Type", /application\/json/);
 
@@ -102,7 +102,7 @@ describe("addition of a blog", () => {
 
     await api
       .post("/api/blogs")
-      .set({ authorization: `bearer ${token}` })
+      .set({ authorization: `Bearer ${token}` })
       .send(newBlog)
       .expect(400);
   }, 100000);
@@ -115,7 +115,7 @@ describe("deletion of a blog", () => {
 
     await api
       .delete(`/api/blogs/${blogToDelete.id}`)
-      .set({ authorization: `bearer ${token}` })
+      .set({ authorization: `Bearer ${token}` })
       .expect(204);
 
     const blogsAtEnd = await helper.blogsInDb();
@@ -136,7 +136,7 @@ describe("updation of a blog", () => {
 
     const blogAfterEnd = await api
       .put(`/api/blogs/${blogToUpdate.id}`)
-      .set({ authorization: `bearer ${token}` })
+      .set({ authorization: `Bearer ${token}` })
       .send(blogToUpdate)
       .expect(200);
 
